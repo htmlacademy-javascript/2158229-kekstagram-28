@@ -3,7 +3,10 @@ const validateLines = (str, size) => str.length <= size;
 validateLines('проверяемая строка', 20);
 
 // Функция для проверки, является ли строка палиндромом. Предусмотрен случай, когда в строке встречаются пробелы
-const isPalindrome = (str) => str.toLowerCase().replaceAll(' ', '') === str.split('').reverse().join('').toLowerCase().replaceAll(' ', '');
+const isPalindrome = (str) => {
+  const clearString = str.toLowerCase().replaceAll(' ', '');
+  return clearString === clearString.split('').reverse().join('');
+};
 isPalindrome('Лёша на полке клопа нашёл ');
 
 // Функция, которая принимает строку, извлекает содержащиеся в ней цифры от 0 до 9 и возвращает их в виде целого положительного числа.
