@@ -15,4 +15,4 @@ const createIdGenerator = () => {
   };
 };
 
-export {getRandomInteger, getRandomArrayElement, createIdGenerator};
+export { getRandomInteger, getRandomArrayElement, createIdGenerator };
