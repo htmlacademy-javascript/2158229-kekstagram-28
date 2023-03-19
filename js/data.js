@@ -1,8 +1,8 @@
-import {getRandomInteger, getRandomArrayElement, createIdGenerator} from './util.js';
+import { getRandomInteger, getRandomArrayElement, createIdGenerator } from './util.js';
 
 const PICTURES_COUNT = 25;
 const AVATARS_COUNT = 6;
-const COMMENTS_COUNT = 1;
+const COMMENTS_COUNT = { MIN: 0, MAX: 3 };
 const LIKES_COUNT = { MIN: 15, MAX: 200 };
 
 const NAMES = [
@@ -70,9 +70,7 @@ const DESCRIPTIONS = [
   'Фотография группы друзей на пляже в летний день #друзья #лето #пляж',
 ];
 
-const generatePhotoId = createIdGenerator();
 const generateCommentId = createIdGenerator();
-const generatePhotoUrl = createIdGenerator();
 
 const createComment = () => ({
   id: generateCommentId(),
@@ -81,14 +79,14 @@ const createComment = () => ({
   names: getRandomArrayElement(NAMES),
 });
 
-const createPhoto = () => ({
-  id: generatePhotoId(),
-  url: `photos/${generatePhotoUrl()}.jpg`,
+const createPhoto = (index) => ({
+  id: index,
+  url: `photos/${index}.jpg`,
   description: getRandomArrayElement(DESCRIPTIONS),
   likes: getRandomInteger(LIKES_COUNT.MIN, LIKES_COUNT.MAX),
-  comments: Array.from({ length: COMMENTS_COUNT }, createComment),
+  comments: Array.from({ length: getRandomInteger(COMMENTS_COUNT.MIN, COMMENTS_COUNT.MAX) }, createComment),
 });
 
-const getPhotos = () => Array.from({ length: PICTURES_COUNT }, createPhoto);
+const getPhotos = () => Array.from({ length: PICTURES_COUNT }, (_, photoIndex) => createPhoto(photoIndex + 1));
 
-export {getPhotos};
+export { getPhotos };
