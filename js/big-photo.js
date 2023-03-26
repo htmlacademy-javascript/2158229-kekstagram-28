@@ -46,7 +46,8 @@ const renderBigPhoto = ({ url, description, likes, comments }) => {
 const onDocumentKeydown = (evt) => {
   if (isEscapeKey(evt)) {
     evt.preventDefault();
-    bigPhotoClose.click();
+    bigPhoto.classList.add('hidden');
+    document.body.classList.remove('modal-open');
   }
 };
 
@@ -64,7 +65,7 @@ photosContainer.addEventListener('click', (evt) => {
   const targetThumbnail = evt.target.closest('.picture');
   if (targetThumbnail) {
     evt.preventDefault();
-    const targetThumbnailId = renderThumbnails[targetThumbnail.dataset.id - 1];
+    const targetThumbnailId = renderThumbnails.find((item) => item.id === Number(targetThumbnail.dataset.id));
     openBigPhoto(targetThumbnailId);
   }
 });
