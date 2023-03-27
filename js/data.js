@@ -2,7 +2,7 @@ import { getRandomInteger, getRandomArrayElement, createIdGenerator } from './ut
 
 const PICTURES_COUNT = 25;
 const AVATARS_COUNT = 6;
-const COMMENTS_COUNT = { MIN: 0, MAX: 3 };
+const COMMENTS_COUNT = { MIN: 0, MAX: 20 };
 const LIKES_COUNT = { MIN: 15, MAX: 200 };
 
 const NAMES = [
