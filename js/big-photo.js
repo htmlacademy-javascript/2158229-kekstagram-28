@@ -46,8 +46,7 @@ const renderBigPhoto = ({ url, description, likes, comments }) => {
 const onDocumentKeydown = (evt) => {
   if (isEscapeKey(evt)) {
     evt.preventDefault();
-    bigPhoto.classList.add('hidden');
-    document.body.classList.remove('modal-open');
+    closeBigPhoto();
   }
 };
 
@@ -70,11 +69,11 @@ photosContainer.addEventListener('click', (evt) => {
   }
 });
 
-const closeBigPhoto = () => {
+function closeBigPhoto() {
   bigPhoto.classList.add('hidden');
   document.body.classList.remove('modal-open');
 
   document.removeEventListener('keydown', onDocumentKeydown);
-};
+}
 
 bigPhotoClose.addEventListener('click', closeBigPhoto);
