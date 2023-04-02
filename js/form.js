@@ -12,7 +12,7 @@ const photoSubmitButton = photoUploadForm.querySelector('.img-upload__submit');
 const onDocumentKeydown = (evt) => {
   if (isEscapeKey(evt) && !isTextFieldFocused()) {
     evt.preventDefault();
-    photoCloseButton.click();
+    closeImgUploadForm();
   }
 };
 
@@ -24,13 +24,13 @@ const openImgUploadForm = () => {
 
 photoUploadButton.addEventListener('change', openImgUploadForm);
 
-const closeImgUploadForm = () => {
+function closeImgUploadForm() {
   photoUploadForm.reset();
   pristineReset();
   photoEditForm.classList.add('hidden');
   document.body.classList.remove('modal-open');
   document.addEventListener('keydown', onDocumentKeydown);
-};
+}
 
 photoCloseButton.addEventListener('click', closeImgUploadForm);
 
