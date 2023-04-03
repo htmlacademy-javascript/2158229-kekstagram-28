@@ -412,6 +412,13 @@ main {
           transform: translateX(-50%);
 }
 
+.img-upload__error-text {
+  background-color: red;
+  padding: 5px;
+  margin-bottom: 15px;
+  border: 1px solid black;
+}
+
 .scale {
   margin: 0;
   padding: 10px;
