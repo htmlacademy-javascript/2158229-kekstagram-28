@@ -49,13 +49,15 @@ const EFFECTS = [
   }
 ];
 
+const DEFAULT_EFFECT = EFFECTS[0];
+
 const photoPreview = document.querySelector('.img-upload__preview img');
 const sliderContainer = document.querySelector('.img-upload__effect-level');
 const sliderElement = document.querySelector('.effect-level__slider');
 const effectValue = document.querySelector('.effect-level__value');
 const photoEffects = document.querySelector('.effects');
 
-const DEFAULT_EFFECT = EFFECTS[0];
+
 let currentEffect = DEFAULT_EFFECT;
 
 const isDefault = () => currentEffect === DEFAULT_EFFECT;
