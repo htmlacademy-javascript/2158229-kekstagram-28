@@ -26,4 +26,4 @@ const createThumbnailsList = (thumbnails) => {
 const renderThumbnails = getPhotos();
 createThumbnailsList(renderThumbnails);
 
-export { renderThumbnails, photosContainer };
+export { renderThumbnails };

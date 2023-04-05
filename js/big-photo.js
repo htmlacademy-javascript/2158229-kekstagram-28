@@ -1,7 +1,7 @@
 /*  Отрисовка полноразмерного изображения */
 
 import { isEscapeKey } from './util.js';
-import { renderThumbnails, photosContainer } from './thumbnails.js';
+import { renderThumbnails } from './thumbnails.js';
 
 const COMMENTS_BLOCK = 5;
 
@@ -12,6 +12,7 @@ const bigPhoto = document.querySelector('.big-picture');
 const bigPhotoClose = bigPhoto.querySelector('.big-picture__cancel');
 const commentsCount = bigPhoto.querySelector('.social__comment-count');
 const commentsLoaderButton = bigPhoto.querySelector('.comments-loader');
+const photosContainer = document.querySelector('.pictures');
 
 let commentsLoaded = 0;
 let comments = [];

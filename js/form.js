@@ -1,13 +1,14 @@
 /* Формы загрузки и редактирования изображения */
 
 import { isEscapeKey } from './util.js';
+import {resetScale} from './scale.js';
+import {resetEffects} from './effects.js';
 import { pristineValidate, pristineReset, isTextFieldFocused } from './form-validation.js';
 
 const photoUploadForm = document.querySelector('.img-upload__form');
 const photoEditForm = photoUploadForm.querySelector('.img-upload__overlay');
 const photoUploadButton = photoUploadForm.querySelector('.img-upload__input');
 const photoCloseButton = photoUploadForm.querySelector('.img-upload__cancel');
-const photoSubmitButton = photoUploadForm.querySelector('.img-upload__submit');
 
 const onDocumentKeydown = (evt) => {
   if (isEscapeKey(evt) && !isTextFieldFocused()) {
@@ -26,6 +27,8 @@ photoUploadButton.addEventListener('change', openImgUploadForm);
 
 function closeImgUploadForm() {
   photoUploadForm.reset();
+  resetScale();
+  resetEffects();
   pristineReset();
   photoEditForm.classList.add('hidden');
   document.body.classList.remove('modal-open');
@@ -37,9 +40,7 @@ photoCloseButton.addEventListener('click', closeImgUploadForm);
 const onPhotoUploadFormSubmit = (evt) => {
   if (!pristineValidate()) {
     evt.preventDefault();
-    photoSubmitButton.disabled = true;
   }
-  photoSubmitButton.disabled = false;
 };
 
 photoUploadForm.addEventListener('submit', onPhotoUploadFormSubmit);
