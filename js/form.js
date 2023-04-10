@@ -5,16 +5,16 @@ import { resetEffects } from './effects.js';
 import { pristineValidate, pristineReset, isTextFieldFocused } from './form-validation.js';
 import { getMessageType, openSuccessMessage, openErrorMessage } from './upload-messages.js';
 
+const SubmitButtonText = {
+  IDLE: 'Опубликовать',
+  SENDING: 'Публикую...'
+};
+
 const photoUploadForm = document.querySelector('.img-upload__form');
 const photoEditForm = photoUploadForm.querySelector('.img-upload__overlay');
 const photoUploadButton = photoUploadForm.querySelector('.img-upload__input');
 const photoCloseButton = photoUploadForm.querySelector('.img-upload__cancel');
 const submitButton = photoEditForm.querySelector('.img-upload__submit');
-
-const SubmitButtonText = {
-  IDLE: 'Опубликовать',
-  SENDING: 'Публикую...'
-};
 
 function onDocumentKeydown(evt) {
   if (isEscapeKey(evt) && !isTextFieldFocused() && !getMessageType()) {
@@ -59,8 +59,10 @@ const onPhotoUploadFormSubmit = () => {
     if (pristineValidate()) {
       blockSubmitButton();
       sendData(new FormData(evt.target))
-        .then(openSuccessMessage)
-        .then(closePhotoUploadForm)
+        .then(() => {
+          openSuccessMessage();
+          closePhotoUploadForm();
+        })
         .catch(
           () => {
             openErrorMessage();
