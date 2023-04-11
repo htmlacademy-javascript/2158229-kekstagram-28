@@ -1,3 +1,4 @@
+import { uploadUserPhoto } from './upload-photo.js';
 import { sendData } from './api.js';
 import { isEscapeKey } from './util.js';
 import { resetScale } from './scale.js';
@@ -27,6 +28,7 @@ const openPhotoUploadForm = () => {
   photoEditForm.classList.remove('hidden');
   document.body.classList.add('modal-open');
   document.addEventListener('keydown', onDocumentKeydown);
+  uploadUserPhoto();
 };
 
 photoUploadButton.addEventListener('change', openPhotoUploadForm);
