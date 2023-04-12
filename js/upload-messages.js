@@ -7,7 +7,7 @@ let isOpened = false;
 
 const getMessageType = () => document.querySelector('.error, .success');
 
-const closeMessage = () => {
+const onCloseMessage = () => {
   const message = getMessageType();
   if (message) {
     message.remove();
@@ -23,7 +23,7 @@ const openErrorMessage = () => {
     const error = errorTemplate.cloneNode(true);
     document.body.append(error);
     const errorButton = document.querySelector('.error__button');
-    errorButton.addEventListener('click', closeMessage);
+    errorButton.addEventListener('click', onCloseMessage);
 
     document.addEventListener('click', onOutsideClick);
     document.addEventListener('keydown', onMessageKeydown);
@@ -37,7 +37,7 @@ const openSuccessMessage = () => {
     const success = successTemplate.cloneNode(true);
     document.body.append(success);
     const successButton = document.querySelector('.success__button');
-    successButton.addEventListener('click', closeMessage);
+    successButton.addEventListener('click', onCloseMessage);
 
     document.addEventListener('click', onOutsideClick);
     document.addEventListener('keydown', onMessageKeydown);
@@ -49,14 +49,14 @@ const openSuccessMessage = () => {
 function onMessageKeydown(evt) {
   if (isEscapeKey(evt) && getMessageType()) {
     evt.preventDefault();
-    closeMessage();
+    onCloseMessage();
   }
 }
 
 function onOutsideClick(evt) {
   const type = getMessageType();
   if (evt.target === type) {
-    closeMessage();
+    onCloseMessage();
   }
 }
 

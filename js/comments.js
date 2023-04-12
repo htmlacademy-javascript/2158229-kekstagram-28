@@ -16,14 +16,15 @@ let comments = [];
 const onDocumentKeydown = (evt) => {
   if (isEscapeKey(evt)) {
     evt.preventDefault();
-    closeBigPhoto();
+    onCloseBigPhoto();
   }
 };
 
 const renderComment = (({ avatar, name, message }) => {
   const comment = commentTemplate.cloneNode(true);
-  comment.querySelector('.social__picture').src = avatar;
-  comment.querySelector('.social__picture').alt = name;
+  const socialPicture = comment.querySelector('.social__picture');
+  socialPicture.src = avatar;
+  socialPicture.alt = name;
   comment.querySelector('.social__text').textContent = message;
 
   return comment;
@@ -62,13 +63,13 @@ const openBigPhoto = (element) => {
 const onCommentsLoaderButtonClick = () => renderComments();
 commentsLoaderButton.addEventListener('click', onCommentsLoaderButtonClick);
 
-function closeBigPhoto() {
+function onCloseBigPhoto() {
   bigPhoto.classList.add('hidden');
   document.body.classList.remove('modal-open');
 
   document.removeEventListener('keydown', onDocumentKeydown);
 }
 
-bigPhotoClose.addEventListener('click', closeBigPhoto);
+bigPhotoClose.addEventListener('click', onCloseBigPhoto);
 
 export { openBigPhoto };

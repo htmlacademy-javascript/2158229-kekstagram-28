@@ -1,7 +1,7 @@
 import { getData } from './api.js';
 import { showAlert } from './util.js';
 import { createGallery } from './gallery.js';
-import { onPhotoUploadFormSubmit, closePhotoUploadForm } from './form.js';
+import { onPhotoUploadFormSubmit, onClosePhotoUploadForm } from './form.js';
 import { showFilters, setFilterClickHandler } from './filter.js';
 
 getData()
@@ -14,4 +14,4 @@ getData()
     showAlert(err.message);
   });
 
-onPhotoUploadFormSubmit(closePhotoUploadForm);
+onPhotoUploadFormSubmit(onClosePhotoUploadForm);

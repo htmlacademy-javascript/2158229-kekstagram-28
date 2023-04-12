@@ -20,30 +20,30 @@ const submitButton = photoEditForm.querySelector('.img-upload__submit');
 function onDocumentKeydown(evt) {
   if (isEscapeKey(evt) && !isTextFieldFocused() && !getMessageType()) {
     evt.preventDefault();
-    closePhotoUploadForm();
+    onClosePhotoUploadForm();
   }
 }
 
-const openPhotoUploadForm = () => {
+const onOpenPhotoUploadForm = () => {
   photoEditForm.classList.remove('hidden');
   document.body.classList.add('modal-open');
   document.addEventListener('keydown', onDocumentKeydown);
   uploadUserPhoto();
 };
 
-photoUploadButton.addEventListener('change', openPhotoUploadForm);
+photoUploadButton.addEventListener('change', onOpenPhotoUploadForm);
 
-function closePhotoUploadForm() {
+function onClosePhotoUploadForm() {
   photoUploadForm.reset();
   resetScale();
   resetEffects();
   pristineReset();
   photoEditForm.classList.add('hidden');
   document.body.classList.remove('modal-open');
-  document.addEventListener('keydown', onDocumentKeydown);
+  document.removeEventListener('keydown', onDocumentKeydown);
 }
 
-photoCloseButton.addEventListener('click', closePhotoUploadForm);
+photoCloseButton.addEventListener('click', onClosePhotoUploadForm);
 
 const blockSubmitButton = () => {
   submitButton.disabled = true;
@@ -63,7 +63,7 @@ const onPhotoUploadFormSubmit = () => {
       sendData(new FormData(evt.target))
         .then(() => {
           openSuccessMessage();
-          closePhotoUploadForm();
+          onClosePhotoUploadForm();
         })
         .catch(
           () => {
@@ -77,4 +77,4 @@ const onPhotoUploadFormSubmit = () => {
 
 photoUploadForm.addEventListener('submit', onPhotoUploadFormSubmit);
 
-export { onPhotoUploadFormSubmit, closePhotoUploadForm };
+export { onPhotoUploadFormSubmit, onClosePhotoUploadForm };
